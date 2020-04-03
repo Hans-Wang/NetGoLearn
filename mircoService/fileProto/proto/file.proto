@@ -1,0 +1,18 @@
+syntax="proto3";
+
+service File {
+	rpc File(stream FileSlice)
+	returns(FileSliceMsg){}
+}
+
+//定义文件传输切片
+//是stream类型通信 的最小单位
+
+message FileSlice{
+	bytes byte=1;
+	int64 len=2;
+}
+
+message FileSliceMsg{
+	string file_name=1;
+}
