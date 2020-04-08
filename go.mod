@@ -6,10 +6,12 @@ require (
 	github.com/coreos/etcd v3.3.19+incompatible // indirect
 	github.com/coreos/go-systemd v0.0.0-20191104093116-d3cd4ed1dbcf // indirect
 	github.com/fsnotify/fsnotify v1.4.9 // indirect
+	github.com/gin-contrib/sessions v0.0.3
 	github.com/gin-gonic/gin v1.5.0
 	github.com/go-sql-driver/mysql v1.4.1
 	github.com/gogo/protobuf v1.3.1 // indirect
 	github.com/golang/protobuf v1.4.0-rc.4
+	github.com/gorilla/sessions v1.1.3
 	github.com/imdario/mergo v0.3.9 // indirect
 	github.com/jmoiron/sqlx v1.2.0
 	github.com/micro/examples v0.2.0

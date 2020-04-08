@@ -130,16 +130,16 @@ $(document).ready(function () {
             }
         },
         submitHandler: function (form) {
-            alert("hello")
+
             var urlStr = "/article/add";
             //判断文章id确定提交的表单的服务器地址
             //若id大于零，说明是修改文章
             var artId = $("#write-article-id").val();
-            alert("artId:" + artId);
+
             if (artId > 0) {
                 urlStr = "/article/update"
             }
-            alert("urlStr:" + urlStr);
+
             $(form).ajaxSubmit({
                 url: urlStr,
                 type: "post",

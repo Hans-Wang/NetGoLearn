@@ -5,7 +5,7 @@ import (
 	"net/http"
 )
 
-func LoginFunc(c *gin.Context){
+func LoginFunc(c *gin.Context) {
 	c.HTML(http.StatusOK, "login.html", nil)
 }
 
