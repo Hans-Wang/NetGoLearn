@@ -1,10 +1,10 @@
 package controllers
 
 import (
-	"fmt"
 	"github.com/gin-contrib/sessions"
 	"github.com/gin-gonic/gin"
 	"net/http"
+	"netgo/loginWeb/logger"
 	"netgo/loginWeb/models"
 	"time"
 )
@@ -22,7 +22,7 @@ func AddArticlePost(c *gin.Context) {
 	session := sessions.Default(c)
 	loginUser := session.Get("login_user")
 	username := loginUser.(string)
-	fmt.Printf("title:%s, tags:%s\n", title, tags)
+	//fmt.Printf("title:%s, tags:%s\n", title, tags)
 
 	//实例化model, 将它输入到数据库中
 	art := models.Article{
@@ -41,4 +41,42 @@ func AddArticlePost(c *gin.Context) {
 		response = gin.H{"code": 0, "message": "error"}
 	}
 	c.JSON(http.StatusOK, response)
+}
+
+func ShowArticleGet(c *gin.Context) {
+
+}
+
+func UpdateArticleGet(c *gin.Context) {
+	isLogin := c.MustGet("is_login")
+	idStr := c.Query("id")
+
+	article, err := models.QueryArticleWithId(idStr)
+	if err != nil {
+		return
+	}
+
+	if article == nil {
+		c.String(http.StatusOK, "bad id")
+		return
+	}
+
+	c.HTML(http.StatusOK, "write_article.html", gin.H{
+		"isLogin": isLogin, "article": article})
+}
+
+func UpdateArticlePost(c *gin.Context) {
+
+}
+
+func DeleteArticle(c *gin.Context) {
+
+}
+
+func AlbumGet(c *gin.Context) {
+
+}
+
+func UploadPost(c *gin.Context) {
+
 }

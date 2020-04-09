@@ -1,0 +1,25 @@
+{
+  "server":{
+    "port":8080
+  },
+  "mysql":{
+    "host":"47.104.241.166",
+    "port":3306,
+    "db":"gin-blog",
+    "username":"gopher",
+    "password":"2020O229_"
+  },
+  "redis":{
+    "host":"47.104.241.166",
+    "port":6379,
+    "db":0,
+    "password":""
+  },
+  "log":{
+    "lever":"debug",
+    "filename":"./gin-blog.log",
+    "maxsize":500,
+    "max_age":7,
+    "max_backups":10
+  }
+}

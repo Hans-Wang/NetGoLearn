@@ -4,12 +4,27 @@ import (
 	"fmt"
 	_ "github.com/go-sql-driver/mysql"
 	sql "github.com/jmoiron/sqlx"
+	"netgo/loginWeb/config"
+	"netgo/loginWeb/logger"
 )
 
 var db *sql.DB
 
-func InitMysql() (err error) {
+//func InitMysql() (err error) {
+//	fmt.Println("InitMysql....")
+//	if db == nil {
+//		db, err = sql.Connect("mysql", "gopher:2020O229_@tcp(47.104.241.166:3306)/go-blog?charset=utf8mb4")
+//		if err != nil {
+//			return
+//		}
+//	}
+//
+//	return
+//}
+
+func InitMysql(cfg *config.MySQLConfig) (err error) {
 	fmt.Println("InitMysql....")
+	logger.Debug("InitMysql...")
 	if db == nil {
 		db, err = sql.Connect("mysql", "gopher:2020O229_@tcp(47.104.241.166:3306)/go-blog?charset=utf8mb4")
 		if err != nil {
@@ -21,7 +36,7 @@ func InitMysql() (err error) {
 }
 
 func ModifyDB(sql string, args ...interface{}) (int64, error) {
-	fmt.Println(args)
+	//fmt.Println(args)
 	result, err := db.Exec(sql, args...)
 	if err != nil {
 		fmt.Println(err)
@@ -40,7 +55,7 @@ func QueryRowDB(dest interface{}, sql string, args ...interface{}) error {
 }
 
 func QueryRows(dest interface{}, sql string, args ...interface{}) error {
-	fmt.Println("QueryRows:", sql, args)
+	//fmt.Println("QueryRows:", sql, args)
 	err := db.Select(dest, sql, args...)
 	return err
 }

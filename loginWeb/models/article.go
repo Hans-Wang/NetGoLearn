@@ -1,8 +1,9 @@
 package models
 
 import (
-	"fmt"
+	"go.uber.org/zap"
 	"netgo/loginWeb/dao"
+	"netgo/loginWeb/logger"
 )
 
 type Article struct {
@@ -27,7 +28,8 @@ func AddArticle(article Article) (int64, error) {
 }
 
 func insertArticle(article Article) (int64, error) {
-	fmt.Println("insertArticle:", article)
+	logger.Debug("insertArticle", zap.Any("article", article))
+	//logger.Debug("insertArticle", zap.Any("article",article))
 	return dao.ModifyDB("insert into z_article(title,tags,short,content,author,create_time,status) values (?,?,?,?,?,?,?)",
 		article.Title, article.Tags, article.Short, article.Content, article.Author, article.CreateTime, article.Status)
 }
@@ -55,7 +57,6 @@ func QueryCurrUserArticleWithPage(username string, pageNum int) (articleList []*
 }
 
 func QueryArticleWithCon(pageNum int, sqlStr string, args ...interface{}) (articleList []*Article, err error) {
-	fmt.Println("QueryArticleWithCon:", sqlStr, args)
 	pageNum--
 	args = append(args, pageNum*pageSize, pageSize)
 	err = dao.QueryRows(&articleList, sqlStr, args...)
